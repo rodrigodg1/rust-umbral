@@ -82,3 +82,5 @@ let plaintext_bob = capsule
     .decrypt_reencrypted(bob_sk, alice_pk, ciphertext);
 
 console.assert(dec.decode(plaintext_bob) == plaintext, "decrypt_reencrypted() failed");
+
+console.log("Success!");

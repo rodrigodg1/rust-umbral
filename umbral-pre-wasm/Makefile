@@ -10,10 +10,9 @@ pkg: src
 	wasm-pack build
 	# temporary fix for https://github.com/rustwasm/wasm-pack/issues/427
 	# (setting a custom package name)
-	sed -i ".bak" -e 's/"name": "umbral-pre-wasm"/"name": "umbral-pre"/g' pkg/package.json
+	sed -i pkg/package.json -e 's/"name": "umbral-pre-wasm"/"name": "umbral-pre"/g'
 	# Temporary fix for https://github.com/rustwasm/wasm-pack/issues/922
 	# (adding missing package files to the manifest)
-	sed -i ".bak" -e 's/"umbral_pre_wasm_bg.wasm"/"umbral_pre_wasm_bg.wasm", "umbral_pre_wasm_bg.js", "umbral_pre_wasm_bg.wasm.d.ts"/g' pkg/package.json
+	sed -i pkg/package.json -e 's/"umbral_pre_wasm_bg.wasm"/"umbral_pre_wasm_bg.wasm", "umbral_pre_wasm_bg.js", "umbral_pre_wasm_bg.wasm.d.ts"/g'
 	# Add keywords
-	sed -i ".bak" -e 's/"sideEffects": false/"sideEffects": false, "keywords": ["umbral", "nucypher"]/g' pkg/package.json
-	rm pkg/package.json.bak
+	sed -i pkg/package.json -e 's/"sideEffects": false/"sideEffects": false, "keywords": ["umbral", "nucypher"]/g'
