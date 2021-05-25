@@ -7,6 +7,7 @@ extern crate wee_alloc;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
+use umbral_pre::DeserializableFromArray;
 use wasm_bindgen::prelude::{wasm_bindgen, JsValue};
 
 use alloc::boxed::Box;
@@ -21,6 +22,11 @@ impl SecretKey {
     pub fn random() -> Self {
         console_error_panic_hook::set_once(); // TODO (#16): find a better place to initialize it
         Self(umbral_pre::SecretKey::random())
+    }
+
+    /// Recover a secret key from array of bytes.
+    pub fn from_bytes(bytes: &[u8]) -> Self {
+        Self(umbral_pre::SecretKey::from_bytes(&bytes).unwrap()) // TODO: Properly handle errors
     }
 }
 
